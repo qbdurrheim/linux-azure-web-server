@@ -16,7 +16,7 @@ The solution consists of:
 - **Public IP Address** – Enables external access
 - **Apache Web Server** – Serves web content over HTTP/HTTPS
 
-> *(Architecture diagram to be added here)*
+![SSH Access](images/architecture.png)
 
 ---
 
