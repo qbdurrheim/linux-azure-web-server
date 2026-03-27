@@ -20,6 +20,24 @@ The solution consists of:
 
 ---
 
+## Deployment Approaches
+
+This project demonstrates two approaches to deploying a Linux web server in Azure:
+
+### Manual Deployment
+- Virtual machine and services configured manually
+- Apache installed and configured step-by-step
+- Security settings applied manually (NSG, SSH hardening)
+
+### Automated Deployment (cloud-init)
+- Infrastructure deployed using Azure portal
+- Configuration automated using cloud-init
+- Apache installation and setup executed automatically during provisioning
+
+The automated approach improves consistency, reduces manual effort, and reflects real-world infrastructure automation practices.
+
+---
+
 ## Key Features
 
 - Provisioned a Linux VM in Azure
