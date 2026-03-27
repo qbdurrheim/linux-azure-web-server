@@ -5,6 +5,8 @@ This project demonstrates the deployment, configuration, and security hardening 
 
 The objective was to simulate a real-world cloud engineering scenario by building and securing infrastructure using best practices in **Azure networking, Linux administration, and web server configuration**.
 
+This project highlights both foundational infrastructure skills and the transition toward automation using cloud-init.
+
 ---
 
 ## Architecture Overview
@@ -16,7 +18,7 @@ The solution consists of:
 - **Public IP Address** – Enables external access
 - **Apache Web Server** – Serves web content over HTTP/HTTPS
 
-![SSH Access](images/architecture.png)
+![Architecture Diagram](images/architecture.png)
 
 ---
 
@@ -36,6 +38,36 @@ This project demonstrates two approaches to deploying a Linux web server in Azur
 
 The automated approach improves consistency, reduces manual effort, and reflects real-world infrastructure automation practices.
 
+---
+
+## Automated Deployment (cloud-init)
+
+This project includes automated provisioning using cloud-init.
+
+During virtual machine creation, a cloud-init script is used to:
+
+- Install Apache automatically  
+- Start and enable the Apache service  
+- Deploy a custom HTML web page  
+
+This removes the need for manual configuration after deployment and demonstrates infrastructure automation practices.
+
+### cloud-init Script
+
+```yaml
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+packages:
+  - apache2
+
+runcmd:
+  - systemctl start apache2
+  - systemctl enable apache2
+  - echo "<h1>Azure Linux Web Server - Deployed via cloud-init</h1>" > /var/www/html/index.html
+```
 ---
 
 ## Key Features
@@ -127,22 +159,28 @@ chmod 400 azure-linux-key.pem
 # Enable SSL
 sudo a2enmod ssl
 sudo systemctl restart apache2
-
 ```
+---
+
 ## Screenshots
 
 ### Website
 ![Website](images/website.png)
+
 ### Azure VM Overview
 ![VM Overview](images/vm-overview.png)
+
 ### Network Security Group Rules
 ![NSG Rules](images/nsg-rules.png)
+
 ### Azure Resources
 ![Resources](images/resources.png)
+
 ### SSH Access
 ![SSH Access](images/ssh-access.png)
-```
-```
+
+---
+
 ## What I Learned
 - Deploying and managing infrastructure in Azure
 - Securing Linux servers using SSH best practices
@@ -150,8 +188,9 @@ sudo systemctl restart apache2
 - Hosting web applications using Apache
 - Implementing HTTPS and understanding certificate trust
 - Troubleshooting and validating services using Linux tools
-```
-```
+
+---
+
 ## Future Improvements
 - Use a domain name instead of public IP
 - Implement trusted SSL certificates (Let’s Encrypt)
@@ -162,9 +201,9 @@ sudo systemctl restart apache2
 - Deploy infrastructure using Terraform or Bicep
 - Implement load balancing for high availability
 
-## Result
+---
+
+## Project Outcome
 A fully functional, secure, and publicly accessible Linux web server hosted in Azure, demonstrating core cloud engineering and system administration skills.
 
-
-
-👨‍💻 Built by Quentin
+Built by Quentin
