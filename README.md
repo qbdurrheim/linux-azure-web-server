@@ -105,6 +105,33 @@ Security was a key focus of this project:
 
 > Note: Self-signed certificate used (non-production setup)
 
+
+### 🔍 Verification of Web Server (Logs + HTTP Request)
+
+To confirm that the Apache web server was successfully deployed (both manually and via cloud-init automation), I performed a local HTTP request from within the VM and validated it using Apache access logs.
+
+#### Commands used:
+```bash
+curl http://localhost
+tail -n 5 /var/log/apache2/access.log
+```
+#### Explanation:
+- `curl http://localhost` sends an HTTP request from the VM to the local web server
+- A valid HTML response confirms Apache is running and serving content
+- `tail -n 5` displays the latest entries in the Apache access log
+- This approach verifies both application availability and successful request handling directly at the server level.
+
+#### Screenshot Evidence:
+![Apache Verification](images/apache-log-proof.png)
+#### Log entry:
+```
+127.0.0.1 - - "GET / HTTP/1.1" 200
+```
+#### This confirms:
+
+- The request reached the server (`GET /`)
+- The server responded successfully (`200 OK`)
+- The request originated from the VM itself (`127.0.0.1`)
 ---
 
 ## How It Works
